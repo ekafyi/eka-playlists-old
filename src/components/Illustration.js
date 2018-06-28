@@ -27,7 +27,7 @@ const Disc = styled('svg')`
     opacity: 0;
   }
   &.is-animated {
-    margin-top: -1rem;
+    top: -1rem;
     animation: ${spin} 2s .5s infinite linear;
   }
   /**
