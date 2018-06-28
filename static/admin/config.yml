@@ -1,0 +1,19 @@
+backend:
+  name: eka-playlists
+  branch: master
+
+media_folder: "static/assets"
+public_folder: "assets"
+
+collections:
+  - name: track
+    label: Track
+    folder: track
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: artist, label: Artist }
+      - { name: date, label: Date, widget: date }
+      - { name: body, label: Body, widget: markdown }
+      - { name: artwork, label: Artwork, widget: image }
+      - { name: mediaUrl, label: 'Media URL' }

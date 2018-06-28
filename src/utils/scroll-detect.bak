@@ -1,0 +1,32 @@
+
+
+  // https://stackoverflow.com/questions/29725828/update-style-of-a-component-onscroll-in-react-js
+  // componentDidMount() {
+  //   window.addEventListener('scroll', this.handleScroll);
+  // }
+  // componentWillUnmount() {
+  //   window.removeEventListener('scroll', this.handleScroll);
+  // }
+  // handleScroll = (event) => {
+    
+  //   if (window.scrollY === 0 && this.state.scrolling === true) {
+  //     this.setState({scrolling: false});
+  //     console.log(window.scrollY + ' scroll false');
+  //   }
+  //   else if (window.scrollY !== 0 && this.state.scrolling !== true) {
+  //     this.setState({scrolling: true});
+  //     console.log(window.scrollY + ' scroll true');
+  //   }
+
+  //   // let currentY = window.scrollY;
+  //   // setInterval((event) => {
+  //   //   if (this.state.scrolling === false) {
+  //   //     this.setState({scrolling: true});
+  //   //     if (currentY === window.scrollY || window.scrollY === 0) {
+  //   //       console.log('stop scrolling');
+  //   //       this.setState({scrolling: false});
+  //   //     } 
+  //   //   }
+  //   // }, 4000)
+
+  // }
