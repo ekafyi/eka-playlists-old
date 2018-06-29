@@ -94,7 +94,7 @@ export default class Sidebar extends Component {
       <StyledSidebar role="contentinfo">
         <div className="sticky">
           <IntroText className="sidebar--intro">
-            Hi! <span role="img" aria-label="Emoji: Happy person raising one hand">🙋🏽</span> I <TextLink href="#">built this site</TextLink> to keep track of songs I like and the occasional playlists (“mixtapes”) I make. Have a look and enjoy!
+            Hi! <span role="img" aria-label="Emoji: Happy person raising one hand">🙋</span> I <TextLink href="#">built this site</TextLink> to keep track of songs I like and the occasional playlists (“mixtapes”) I make. Have a look and enjoy!
           </IntroText>
           <Credits className="sidebar--siteinfo">
             <p>

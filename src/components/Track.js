@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled, { css } from "react-emotion";
 import mq from "../utils/mq";
 import Link from "gatsby-link";
-import { BoxLabel, H4, SmallText } from "./Text";
+import { H2, BoxLabel, H4, SmallText } from "./Text";
 import typography, { rhythm } from "../utils/typography";
 import TransitionContainer from "../components/TransitionContainer";
 
@@ -58,6 +58,7 @@ const StyledTrackGroup = styled('section')`
   margin-bottom: ${rhythm(1.5)};
   ul {
     margin-top: -1px; /* fix bug to maintain vertical rhythm */
+    margin-left: 0;
   }
 
   /**
@@ -93,28 +94,44 @@ export class TrackGroup extends Component {
 }
 
 {/*
-  const StyledTrackDetail = styled(TransitionContainer)`
-    background: #4A51A8;
-    border-top: .75rem solid #4A51A8;
-    position: fixed;
-    z-index: 2; // over Track cards
-    left: 0;
-    right: 0;
-    padding: 1.5rem;
-    bottom: 0;
-    top: 10vh;
-    overflow: scroll;
-    * {
-      color: #F3E8B9;
-    }
-  `
-  export class TrackGroup extends Component {
-    render() {
-      return (
-        <StyledTrackDetail className="track-detail">
-        {this.props.children}
-        </StyledTrackDetail>
-      );
+*/}
+const StyledTrackDetail = styled('div')`
+  background: ${props => props.theme.primary.color};
+  overflow: auto;
+  * {
+    color: ${props => props.theme.secondary.color};
+  }
+  .track-detail__h {
+    max-width: 75%;
+    margin-bottom: 3rem;
+    h1 {
+      padding-top: ${rhythm(0.5)};
     }
   }
-*/}
+  /**
+   *  MQ 
+   */
+  ${mq.small(css`
+  `)};
+  ${mq.medium(css`
+    border-top: ${rhythm(0.5)} solid #4A51A8;
+    border-bottom: ${rhythm(0.5)} solid #4A51A8;
+    padding: ${rhythm(1)};
+    height: 87.5vh;
+  `)};
+  ${mq.large(css`
+  `)};
+`
+export class TrackDetail extends Component {
+  render() {
+    return (
+      <StyledTrackDetail className="track-detail">
+        <div className="track-detail__h">
+          {this.props.heading && (<h1>{this.props.heading}</h1>)}
+          {this.props.subheading && (<H2>{this.props.subheading}</H2>)}
+        </div>
+        {this.props.children}
+      </StyledTrackDetail>
+    );
+  }
+}

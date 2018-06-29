@@ -32,7 +32,7 @@ class TransitionContainer extends React.Component {
   render() {
     const transitionProps = {
       timeout: {
-        enter: 0,
+        enter: 250,
         exit: timeout,
       },
       appear: true,

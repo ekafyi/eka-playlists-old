@@ -9,6 +9,7 @@ const StyledFooter = styled('aside')`
   color: ${props => props.theme.primary.color};
   padding: 0 ${props => props.theme.pagePadding.small};
   margin-top: ${rhythm(2)};
+  margin-bottom: ${rhythm(1)};
   p {
     display: inline;
     margin-right: .5rem;

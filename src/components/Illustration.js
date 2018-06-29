@@ -26,6 +26,7 @@ const Disc = styled('svg')`
     fill: ${props => props.theme.secondary.color};
     opacity: 0;
   }
+  .is-single &,
   &.is-animated {
     top: -1rem;
     animation: ${spin} 2s .5s infinite linear;
@@ -73,7 +74,7 @@ export default class Illustration extends Component {
         transform="rotate(180)" enable-background="new 0 0 32.009 32.009" viewBox="0 0 32.009 32.009" xmlns="http://www.w3.org/2000/svg"
       >
         <circle
-           cx="16" cy="16.5" r="16"
+           cx="16" cy="16" r="16"
         />
         <g>
           <path d="m21.951 1.151c-8.202-3.284-17.515.702-20.8 8.905-3.286 8.204.702 17.518 8.905 20.802 8.203 3.285 17.516-.702 20.801-8.905 3.286-8.204-.703-17.516-8.906-20.802zm-11.151 27.851c-7.166-2.87-10.662-11.034-7.793-18.201 2.87-7.166 11.035-10.663 18.202-7.792 7.166 2.869 10.662 11.034 7.793 18.2-2.871 7.167-11.035 10.662-18.202 7.793z"

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Helmet from "react-helmet"
 import Layout from "../components/layout"
 import Sidebar from "../components/Sidebar"
-import Track, { TrackGroup } from "../components/Track";
+import Track, { TrackGroup, TrackDetail } from "../components/Track";
 import { Link } from "gatsby";
 import { H2 } from "../components/Text";
 import { CloseBtn } from "../components/Button";
@@ -12,14 +12,13 @@ import styled, { injectGlobal } from 'react-emotion'
 import moment from 'moment';
 import { rhythm } from "../utils/typography";
 
-const AllTracks = ({node}) => {
+const AllPosts = ({node}) => {
   let postsByDate = node
   return (
     <React.Fragment>
       {postsByDate.map((trackGroup) => (
         <TrackGroup
           key={trackGroup.fieldValue}
-          //date={trackGroup.fieldValue}
           date={moment(trackGroup.fieldValue).format('D MMMM YYYY')}
         >
           {trackGroup.edges.map((track) => (
@@ -36,40 +35,16 @@ const AllTracks = ({node}) => {
   )
 }
 
-// !TODO: move this to Track component
-const TrackDetail = ({node}) => {
+const SinglePost = ({node}) => {
   let track = node
-  const StyledTrackDetail = styled(TransitionContainer)`
-    background: ${props => props.theme.primary.color};
-    border-top: .75rem solid #4A51A8;
+  const StyledTransitionContainer = styled(TransitionContainer)`
     position: fixed;
     z-index: 2; /* over Track cards */
+    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    padding: 1.5rem;
-    bottom: 0;
-    top: 18.75vh;
-    overflow: scroll;
-    * {
-      color: ${props => props.theme.secondary.color};
-    }
-    .track-detail__h {
-      max-width: 75%;
-      margin-bottom: 3rem;
-      h1 {
-        padding-top: ${rhythm(0.5)};
-      }
-    }
-  `
-  const StyledCloseBtn = styled(CloseBtn)`
-    position: fixed;
-    z-index: 3;
-    top: 0;
-    left: 1rem;
-    color: ${props => props.theme.primary.color};
-    &:hover {
-      color: coral;
-    }
+    padding-top: 12.5vh; // temp
   `
   return (
     <React.Fragment>
@@ -78,17 +53,18 @@ const TrackDetail = ({node}) => {
         <body className="is-single" />
       </Helmet>
       {/* !TODO: make accessible */}
-      <StyledCloseBtn to="/">&#x2715;</StyledCloseBtn>
-      <StyledTrackDetail className="track-detail">
-        <div className="track-detail__h">
-          <h1>{track.frontmatter.title}</h1>
-          <H2>{track.frontmatter.artist}</H2>
-        </div>
-        <div style={{ width: 320 }}>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam eos et iste ducimus deleniti nulla distinctio necessitatibus libero debitis quos exercitationem alias, placeat omnis laborum impedit, molestiae accusantium eligendi?</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam eos et iste ducimus deleniti nulla distinctio necessitatibus libero debitis quos exercitationem alias, placeat omnis laborum impedit, molestiae accusantium eligendi?</p>
-        </div>
-      </StyledTrackDetail>
+      <CloseBtn to="/">&#x2715;</CloseBtn>
+      <StyledTransitionContainer>
+        <TrackDetail
+          heading={track.frontmatter.title}
+          subheading={track.frontmatter.artist}
+        >
+          <div style={{ width: 320 }}>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam eos et iste ducimus deleniti nulla distinctio necessitatibus libero debitis quos exercitationem alias, placeat omnis laborum impedit, molestiae accusantium eligendi?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam eos et iste ducimus deleniti nulla distinctio necessitatibus libero debitis quos exercitationem alias, placeat omnis laborum impedit, molestiae accusantium eligendi?</p>
+          </div>
+        </TrackDetail>
+      </StyledTransitionContainer>
     </React.Fragment>
   )
 }
@@ -118,13 +94,13 @@ export default class IndexPage extends Component {
         />
         <Sidebar />
         <div className="posts">
-          <AllTracks node={postsByDate} />
+          <AllPosts node={postsByDate} />
           {postsByDate.map((trackGroup) => 
             trackGroup.edges.map((track) => (
               <Route 
                 key={track.node.fields.slug}
                 path={track.node.fields.slug}
-                render={() => (<TrackDetail node={track.node} />)} 
+                render={() => (<SinglePost node={track.node} />)} 
                 exact
               />
             ))
