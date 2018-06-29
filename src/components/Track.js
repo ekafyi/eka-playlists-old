@@ -35,7 +35,7 @@ const StyledTrack = styled('li')`
    */
   @media only screen and (max-width: 479px) {
     .track--title {
-      font-size: 1.80203rem;
+      font-size: 1.6rem;
     }
     .track--artist {
       font-size: 1rem;
