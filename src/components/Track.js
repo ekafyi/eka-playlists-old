@@ -33,6 +33,14 @@ const StyledTrack = styled('li')`
   /**
    *  MQ 
    */
+  @media only screen and (max-width: 479px) {
+    .track--title {
+      font-size: 1.80203rem;
+    }
+    .track--artist {
+      font-size: 1rem;
+    }
+  }
   ${mq.small(css`
     margin-bottom: 0;
   `)};
