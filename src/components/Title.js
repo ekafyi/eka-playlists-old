@@ -7,7 +7,7 @@ import { H1 } from "./Text";
 
 const StyledMainTitle = styled(H1)`
   padding-left: ${props => props.theme.pagePadding.small};
-  margin: ${rhythm(0.5)} 0 ${rhythm(2)};
+  margin: ${rhythm(2)} 0 ${rhythm(2)};
   max-width: 9ch;
   height: ${rhythm(7.5)}; // maintain vertical rhythm despite custom lineheight
   line-height: .9 !important; 

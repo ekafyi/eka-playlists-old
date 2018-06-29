@@ -20,7 +20,7 @@ injectGlobal`
   body {
     background: ${themeObject.secondary.color};
     border: solid ${themeObject.primary.color};
-    border-width: ${rhythm(0.5)} ${rhythm(0.25)};
+    border-width: ${rhythm(0.25)};
     ${mq.medium(css`
       border-width: ${rhythm(0.5)};
     `)};
