@@ -1,20 +1,18 @@
 const getTransitionStyles = timeout => {
   return {
     entering: {
-      opacity: 0,
-      transform: `translateY(6rem)`,
+      opacity: 1,
+      //transform: `translateY(1rem)`,
     },
     entered: {
-      transition: `opacity ${timeout}ms ease-in-out, transform ${timeout*0.75}ms ease-in-out`,
-      //transition: `opacity ${timeout}ms ease-in-out`,
+      transition: `opacity ${timeout}ms ease-in-out, transform ${timeout}ms ease-in-out`,
       opacity: 1,
-      transform: `translateY(0)`,
+      //transform: `translateY(0)`,
     },
     exiting: {
-      transition: `opacity ${timeout}ms ease-in-out, transform ${timeout*1.5}ms ease-in-out`,
-      //transition: `opacity ${timeout}ms ease-in-out`,
-      opacity: 0,
-      transform: `translateY(6rem)`,
+      transition: `opacity ${timeout*2}ms ease-in-out, transform ${timeout}ms ease-in-out`,
+      opacity: 1,
+      //transform: `translateY(1rem)`,
     },
   }
 }

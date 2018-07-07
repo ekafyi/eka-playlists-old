@@ -42,14 +42,14 @@ const wrapperStyles = css`
 `
 const mainStyles = css`
   .full-width {
-    grid-column: 1/17;
+    grid-column: 1/4;
   }
   /**
    *  MQ 
    */
   ${mq.medium(css`
     display: grid;
-    grid-template-columns: repeat(16,1fr);
+    grid-template-columns: minmax(13rem, 3fr) minmax(auto, 75%) 1fr;
   `)};
 `
 

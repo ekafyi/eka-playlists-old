@@ -1,11 +1,11 @@
 ---
+date: "2018-06-28"
 title: Take the Doggie
 artist: Shy Boys
-date: "2018-06-28"
 songUrl: https://www.youtube.com/watch?v=ELl3aAgzJfM
-tag: ["new find", "good video"]
+tag: ["new find", "good video", "basslines"]
 ---
 
-_(insert intelligible squeals)_
+_(insert unintelligible squeals)_
 
-Good video, good bass lines, good doggos! 😍
+Funny lyrics, fun bass lines, good doggos! 😍

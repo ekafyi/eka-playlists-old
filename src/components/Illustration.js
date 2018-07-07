@@ -26,11 +26,6 @@ const Disc = styled('svg')`
     fill: ${props => props.theme.secondary.color};
     opacity: 0;
   }
-  .is-single &,
-  &.is-animated {
-    top: -1rem;
-    animation: ${spin} 2s .5s infinite linear;
-  }
   /**
    *  MQ 
    */
@@ -52,6 +47,11 @@ const Disc = styled('svg')`
       circle {
         opacity: 1;
       }
+    }
+    .is-single &,
+    &.is-animated {
+      top: -1.5rem;
+      animation: ${spin} 7s .5s infinite linear;
     }
   `)};
   ${mq.xl(css`

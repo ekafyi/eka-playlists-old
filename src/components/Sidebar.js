@@ -6,7 +6,6 @@ import { H4, SmallerText, TextLink } from "./Text";
 //import Link from "gatsby-link";
 
 const StyledSidebar = styled('div')`
-  grid-column: 1/17;
   padding: 0 ${props => props.theme.pagePadding.small};
   * {
     color: ${props => props.theme.primary.color};
@@ -27,60 +26,31 @@ const StyledSidebar = styled('div')`
     }
   `)};
   ${mq.medium(css`
-    grid-column: 1/5;
-    padding-right: calc(1.5rem + 1vw);
-    & + .posts {
-      grid-column: 5/17;
-    }
+    padding-right: calc(1rem + 2vw);
+    padding-top: ${rhythm(1.5)};
     .sticky {
       top: ${rhythm(0.5)};
+      height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto ${rhythm(0.5)};
     }
     .sidebar--intro {
-      width: 100%;
-      margin-top: ${rhythm(1.5)};
+      width: 100%; /* override small style */
     }
     .sidebar--siteinfo {
-      display: block;
-      max-width: 24ch;
-      margin-top: calc(100vh - 25rem - 1vw);
+      display: block; /* override small style */
+      grid-row: 3/4;
     }
   `)};
   ${mq.large(css`
-    grid-column: 1/4;
     padding-left: 1rem;
-    padding-right: 0;
-    & + .posts {
-    }
-    .sticky {
-      top: ${rhythm(1)};
-    }
-    .sidebar--siteinfo {
-      margin-top: calc(100vh - 22.5rem - 1vw);
-    }
   `)};
   ${mq.xl(css`
-    grid-column: 1/3;
-    margin-right: calc(-2vw);
-    & + .posts {
-      grid-column: 4/16;
-    }
-    .sidebar--siteinfo {
-      margin-top: calc(100vh - 25rem - 1vw);
-    }
+  padding-right: calc(2rem + 2vw);
   `)};
-  @media screen and (min-width: 768px) and (orientation: portrait) {
-    .sidebar--siteinfo {
-      margin-top: calc(102vh - 31.5rem - 1vw);
-    }
-  }
-  @media screen and (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
-    .sidebar--siteinfo {
-      margin-top: inherit;
-    }
-  }
-  @media screen and (min-width: 768px) and (max-width: 1023px) and (max-height: 499px) {
+  @media screen and (min-width: 768px) and (max-width: 1023px) and (max-height: 499px) { /* smallish landscape screen */
     .sidebar--intro {
-      font-size: 1em;
+      font-size: 1em; /* make text smaller so entire sidebar fits screen height */
       line-height: 1.325rem;
     }
   }
@@ -88,21 +58,27 @@ const StyledSidebar = styled('div')`
 const IntroText = H4.withComponent('div');
 const Credits = SmallerText.withComponent('div');
 
+export const CreditsText = (
+  <React.Fragment>
+    <p>
+      Original content by Eka under <TextLink rel="license" href="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</TextLink>. Powered by <TextLink href="">Gatsby</TextLink> and <TextLink href="">Netlify</TextLink>, hosted on <TextLink href="">Github</TextLink>. Icon by <TextLink href="">Flaticon</TextLink>.
+    </p> 
+    <p>
+      Find me on <TextLink href="">Twitter</TextLink>, <TextLink href="">Medium</TextLink>, and/or check out my bands <TextLink href="">Nerv.ous</TextLink> and <TextLink href="">Brilliant at Breakfast</TextLink>.
+    </p>
+  </React.Fragment>
+)
+
 export default class Sidebar extends Component {
   render() {
     return (
       <StyledSidebar role="contentinfo">
         <div className="sticky">
           <IntroText className="sidebar--intro">
-            Hi! <span role="img" aria-label="Emoji: Happy person raising one hand">🙋</span> I <TextLink href="#">built this site</TextLink> to keep track of songs I like and the occasional playlists (“mixtapes”) I make. Have a look and enjoy!
+            Hi! <span role="img" aria-label="Emoji: Happy person raising one hand">🙋</span> I’m <TextLink href="">Eka</TextLink> and I <TextLink href="#">made this site</TextLink> to keep track of songs I like and the occasional thematic playlists I make. Feel free to look around!
           </IntroText>
           <Credits className="sidebar--siteinfo">
-            <p>
-            Original content by <TextLink href="">Eka</TextLink> under <TextLink rel="license" href="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</TextLink>. Powered by <TextLink href="">Gatsby</TextLink> and <TextLink href="">Netlify</TextLink>, hosted on <TextLink href="">Github</TextLink>. Icon by <TextLink href="">Flaticon</TextLink>.
-            </p> 
-            <p>
-              Find me on <TextLink href="">Twitter</TextLink>, <TextLink href="">Medium</TextLink>, and/or check out my bands <TextLink href="">Nerv.ous</TextLink> and <TextLink href="">Brilliant at Breakfast</TextLink>.
-            </p>
+            {CreditsText}
           </Credits>
         </div>
       </StyledSidebar>

@@ -1,0 +1,16 @@
+// Alt track style
+ul {
+  margin-top: calc(-0.375rem - 1px);
+  margin-left: -.375rem;
+  margin-right: -.375rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+li {
+  flex: 1 0 23%;
+  margin: .75rem .375rem;
+  max-width: 49%;
+}
+.track-group--date {
+  margin-bottom: .375rem;
+}
