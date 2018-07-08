@@ -7,7 +7,7 @@ import { H1 } from "./Text";
 
 const StyledMainTitle = styled(H1)`
   padding-left: ${props => props.theme.pagePadding.small};
-  margin: ${rhythm(2)} 0 ${rhythm(2)};
+  margin: ${rhythm(3)} 0 ${rhythm(1)};
   max-width: 9ch;
   height: ${rhythm(7.5)}; // maintain vertical rhythm despite custom lineheight
   line-height: .9 !important; 
@@ -32,7 +32,7 @@ const StyledMainTitle = styled(H1)`
    *  MQ 
    */
   @media only screen and (max-width: 359px) {
-    margin-bottom: ${rhythm(1)};
+    //margin-bottom: ${rhythm(1)};
     line-height: .8 !important;
     a {
       font-size: calc(1em - 3vw);

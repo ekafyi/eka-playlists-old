@@ -105,6 +105,7 @@ export class TrackGroup extends Component {
 // 3. TrackDetail 
 
 const boxHeight = 12; // 12 * 1.5rem
+const contentPadding = 4/3; // 2rem
 const StyledTrackDetail = styled('article')`
   background: #4A51A8;
   color: #F3E8B9;
@@ -121,6 +122,9 @@ const StyledTrackDetail = styled('article')`
   .track-detail__text {
     display: flex;
     flex-flow: column;
+    &>* {
+      flex-shrink: 0; /** Chrome bug */
+    }
     &>*:nth-child(2) {
       flex-grow: 1;
     }
@@ -155,9 +159,10 @@ const StyledTrackDetail = styled('article')`
   `)};
 `
 const TrackMedia = styled('div')`
+  &,
   &>* {
     height: ${rhythm(boxHeight)};
-    position: sticky;
+    position: sticky !important;
     top: 0;
   }
   iframe {
@@ -165,47 +170,53 @@ const TrackMedia = styled('div')`
     width: 100%;
     margin-bottom: -.5rem; /* gap bugfix */
   }
-  .track-media__container {
+  .track-media__action-container {
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
   }
-  .track-media__icon {
-    width: ${rhythm(4)};
-    height: ${rhythm(4)};
-    line-height: ${rhythm(4)};
-    font-size: 3rem;
-    text-align: center;
-  }
-  .track-media__text {
-    font-size: ${typography.toJSON().h4.fontSize};
-    font-weight: 700;
+  .media-action__text {
     transform: rotate(-90deg);
     transform-origin: top left;
     left: -2rem;
     margin-bottom: -2rem;
     position: relative;
   }
-  a {
-    .track-media__icon,
-    .track-media__text {
-      color: ${props => props.theme.secondary.color};
-    }
-    &:hover .track-media__icon {
-      color: ${props => props.theme.primary.color};
-      background: ${props => props.theme.secondary.color};
-    }
+`
+const MediaAction = styled('a')`
+  .media-action__icon,
+  .media-action__text {
+    color: ${props => props.theme.secondary.color};
+  }
+  .media-action__icon {
+    width: ${rhythm(4)};
+    height: ${rhythm(4)};
+    line-height: ${rhythm(4)};
+    font-size: 3rem;
+    text-align: center;
+  }
+  .media-action__text {
+    font-size: ${typography.toJSON().h4.fontSize};
+    font-weight: 700;
+    position: relative;
+  }
+  &:hover .media-action__icon {
+    color: ${props => props.theme.primary.color};
+    background: ${props => props.theme.secondary.color};
   }
 `
 const TrackHead = styled('div')`
   min-height: ${rhythm(boxHeight / 2)};
   box-shadow: inset 0px ${rhythm(-1.5)} ${props => props.theme.primary.color};
+  &.has-quote {
+    margin-bottom: ${rhythm(0.5)};
+  }
   blockquote {
     white-space: pre-line;
-    padding-top: ${rhythm(2.5)};
-    padding-right: 2rem;
-    padding-left: calc(2rem - ${rhythm(0.25)});
+    padding-top: ${rhythm(2)};
+    padding-right: ${rhythm(contentPadding / 2)};
+    padding-left: calc(${rhythm(contentPadding / 2)} - ${rhythm(0.25)});
     margin-bottom: ${rhythm(1)};
     &>* {
       display: inline;
@@ -215,26 +226,46 @@ const TrackHead = styled('div')`
       padding: 0 ${rhythm(0.25)};
       color: ${props => props.theme.secondary.color};
       background: ${props => props.theme.primary.color};
+      font-size: ${typography.toJSON().h4.fontSize};
     }
   }
 
   /**
    *  MQ 
    */
+  @media only screen and (max-width: 767px) {
+    min-height: ${rhythm(boxHeight / 3)};
+  }
   ${mq.medium(css`
     &.has-quote {
       margin-bottom: ${rhythm(1)};
     }
+    blockquote {
+      &>* {
+        font-size: ${typography.toJSON().h5.fontSize};
+      }
+    }
   `)};
   ${mq.large(css`
+    blockquote {
+      padding-right: ${rhythm(contentPadding)};
+      padding-left: calc(${rhythm(contentPadding)} - ${rhythm(0.25)});
+      &>* {
+        font-size: ${typography.toJSON().h4.fontSize};
+      }
+    }
   `)};
 `
 const TrackBody = styled('div')`
-  padding: 0 2rem ${rhythm(2 / 3)};
+  padding-top: 0;
+  padding-bottom: ${rhythm(2 / 3)};
+  padding-left: ${rhythm(contentPadding / 2)};
+  padding-right: ${rhythm(contentPadding / 2)};
   position: relative;
   display: flex;
   flex-flow: column;
-  justify-content: end;
+  justify-content: end; /** Firefox */
+  justify-content: flex-end; /** Chrome */
   .track-detail__body {
     font-size: ${typography.toJSON().h6.fontSize};
     margin-bottom: ${rhythm(1)};
@@ -257,7 +288,7 @@ const TrackBody = styled('div')`
     }
   }
   .track-detail__h { /* xs only */
-    margin-bottom: ${rhythm(1.5)};
+    margin-bottom: ${rhythm(1)};
     * {
       color: ${props => props.theme.secondary.color};
     }
@@ -265,15 +296,32 @@ const TrackBody = styled('div')`
       margin-bottom: 0;
     }
   }
+  .track-detail__media-action { /* xs only */
+    margin-top: ${rhythm(1)};
+    margin-bottom: ${rhythm(1.5)};
+    display: flex;
+    align-items: flex-end;
+    .media-action__icon {
+      width: ${rhythm(2.5)};
+      height: ${rhythm(2.5)};
+      line-height: ${rhythm(2.5)};
+      font-size: ${rhythm(1)};
+    }
+    .media-action__text {
+      transform: rotate(90deg);
+      left: -.75rem;
+      bottom: .75rem;
+    }
+  }
   .track-detail__meta {
-    width: 100%;
-    margin-left: calc(-2rem + 1px);
+    width: calc(100% + ${rhythm(contentPadding / 2)});
+    margin-left: ${rhythm(contentPadding / -2)};
     font-size: ${typography.toJSON().h6.fontSize};
     &-item {
       span {
         background: ${props => props.theme.secondary.color};
         font-weight: 700;
-        padding: 0 ${rhythm(0.25)} 0 2rem;
+        padding: 0 ${rhythm(0.25)} 0 ${rhythm(contentPadding / 2)};
         box-decoration-break: clone;
         &, a {
           color: ${props => props.theme.primary.color};
@@ -301,9 +349,24 @@ const TrackBody = styled('div')`
   /**
   *  MQ 
   */
-  @media only screen and (max-width: 479px) {
+  @media only screen and (max-width: 767px) {
   }
-  ${mq.medium(css`
+  ${mq.large(css`
+    padding-left: ${rhythm(contentPadding)};
+    padding-right: ${rhythm(contentPadding)};
+    .track-detail__body { }
+    .track-detail__meta {
+      width: calc(100% + ${rhythm(contentPadding)});
+      margin-left: ${rhythm(contentPadding * -1)};
+      font-size: 1rem;
+      &-item {
+        span {
+          padding: 0 ${rhythm(0.25)} 0 ${rhythm(contentPadding)};
+        }
+      }
+    }
+  `)};
+  ${mq.xl(css`
     .track-detail__body {
       padding-right: 25%;
       &.has-cols {
@@ -313,28 +376,35 @@ const TrackBody = styled('div')`
         column-gap: ${rhythm(1.5)};
       }
     }
-    .track-detail__meta {
-      font-size: 1rem;
-    }
   `)};
 `
 const StyledCloseBtn = styled(CloseBtn)`
   position: absolute;
-  top: 0;
+  top: ${rhythm(0.25)};
+  right: ${rhythm(0.25)};
   left: auto;
-  right: 0;
   z-index: 1;
   color: ${props => props.theme.secondary.color};
-  width: 3rem;
-  height: 3rem;
-  font-size: 3rem;
+  width: ${rhythm(1.5)};
+  height: ${rhythm(1.5)};
+  font-size: ${rhythm(1.5)};
+  /**
+  *  MQ 
+  */
+  ${mq.large(css`
+    top: 0;
+    right: 0;
+    width: ${rhythm(2)};
+    height: ${rhythm(2)};
+    font-size: ${rhythm(2)};
+  `)};
 `
 export class TrackDetail extends Component {
   constructor(props) {
     super(props);
-    this.testFunction = this.testFunction.bind(this);
+    this.getEmbedUrl = this.getEmbedUrl.bind(this);
   }
-  testFunction(url) {
+  getEmbedUrl(url) {
     let embedUrl = false;
 
     // 1. Identify source site based on URL, and get ID from URL    
@@ -380,28 +450,28 @@ export class TrackDetail extends Component {
       <StyledTrackDetail className="track-detail">
         <MediaQuery query="(min-device-width: 768px)">
           <TrackMedia>
-            {track.frontmatter.songUrl && this.testFunction(track.frontmatter.songUrl) ? (
-                <iframe src={this.testFunction(track.frontmatter.songUrl)} frameBorder="0" allow="encrypted-media" allowFullScreen allowtransparency />
+            {track.frontmatter.songUrl && this.getEmbedUrl(track.frontmatter.songUrl) ? (
+                <iframe src={this.getEmbedUrl(track.frontmatter.songUrl)} frameBorder="0" allow="encrypted-media" allowFullScreen allowtransparency="true" title={track.frontmatter.title + 'by' + track.frontmatter.artist} />
               ) : (
                 track.frontmatter.songUrl ? (
-                  <div className="track-media__container">
-                    <a href={track.frontmatter.songUrl} 
+                  <div className="track-media__action-container">
+                    <MediaAction href={track.frontmatter.songUrl} 
                       target="_blank" 
                       title={'Listen to ' + track.frontmatter.title + ' by ' + track.frontmatter.artist}
                     >
-                      <div className="track-media__icon pattern-box">▶︎</div>
-                      <div className="track-media__text">listen</div>
-                    </a>
+                      <div className="media-action__icon pattern-box">▶︎</div>
+                      <div className="media-action__text">open</div>
+                    </MediaAction>
                   </div>
                 ) : (
-                  <div className="track-media__container">
-                    <a href={'https://www.youtube.com/results?search_query=' + track.frontmatter.artist.split(' ').join('+') + '+' + track.frontmatter.title.split(' ').join('+')} 
+                  <div className="track-media__action-container">
+                    <MediaAction href={'https://www.youtube.com/results?search_query=' + track.frontmatter.artist.split(' ').join('+') + '+' + track.frontmatter.title.split(' ').join('+')} 
                       target="_blank"
                       title={'Search for ' + track.frontmatter.title + ' by ' + track.frontmatter.artist}
                     >
-                      <div className="track-media__icon pattern-box">⦿</div>
-                      <div className="track-media__text">search</div>
-                    </a>
+                      <div className="media-action__icon pattern-box">⦿</div>
+                      <div className="media-action__text">search</div>
+                    </MediaAction>
                   </div>
                 )
               )
@@ -413,12 +483,33 @@ export class TrackDetail extends Component {
             className={(track.frontmatter.quote && ' has-quote ') + ' pattern-box '}
           >
             <StyledCloseBtn to="/">&#x2715;</StyledCloseBtn>
-            {track.frontmatter.quote && <blockquote><h4>{track.frontmatter.quote}</h4></blockquote>}
+            {track.frontmatter.quote && <blockquote><span>{track.frontmatter.quote}</span></blockquote>}
           </TrackHead>
           <TrackBody>
-            <MediaQuery query="(max-device-width: 767px)" component="header" className="track-detail__h">
-              <h2>{track.frontmatter.title}</h2>
-              <h4>{track.frontmatter.artist}</h4>
+            <MediaQuery query="(max-device-width: 767px)">
+              <header className="track-detail__h">
+                <h2>{track.frontmatter.title}</h2>
+                <h4>{track.frontmatter.artist}</h4>
+              </header>
+              {track.frontmatter.songUrl ? (
+                <MediaAction href={track.frontmatter.songUrl} 
+                  target="_blank" 
+                  title={'Listen to ' + track.frontmatter.title + ' by ' + track.frontmatter.artist}
+                  className="track-detail__media-action"
+                >
+                  <div className="media-action__icon pattern-box">▶︎</div>
+                  <div className="media-action__text">open</div>
+                </MediaAction>
+              ) : (
+                <MediaAction href={'https://www.youtube.com/results?search_query=' + track.frontmatter.artist.split(' ').join('+') + '+' + track.frontmatter.title.split(' ').join('+')} 
+                  target="_blank"
+                  title={'Search for ' + track.frontmatter.title + ' by ' + track.frontmatter.artist}
+                  className="track-detail__media-action"
+                >
+                  <div className="media-action__icon pattern-box">⦿</div>
+                  <div className="media-action__text">search</div>
+                </MediaAction>
+              )}
             </MediaQuery>
             {track.html && 
               <div 
@@ -442,7 +533,7 @@ export class TrackDetail extends Component {
                     tags:&nbsp;
                     <ul className="tags">
                       {track.frontmatter.tag.map((tag) => (
-                        <li className="tags__tag">
+                        <li key={tag} className="tags__tag">
                           <em>{tag}</em>
                           {/* <Link key={tag} to="/under-construction"> <em>{tag}</em> </Link> */}
                         </li>

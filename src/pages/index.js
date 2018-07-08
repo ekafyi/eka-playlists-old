@@ -5,14 +5,14 @@ import Sidebar from "../components/Sidebar"
 import Track, { TrackGroup, TrackDetail } from "../components/Track";
 import TransitionContainer from "../components/TransitionContainer";
 //import Route from "react-router-dom/Route";
-import { ServerRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import styled, { css } from 'react-emotion'
 import moment from 'moment';
 
 const AllPosts = ({node}) => {
   let postsByDate = node
   return (
-    // <ServerRouter>
+    // <BrowserRouter>
     <React.Fragment>
       {postsByDate.map((trackGroup) => (
         <TrackGroup
@@ -39,7 +39,7 @@ const AllPosts = ({node}) => {
         </TrackGroup>
       ))}
     </React.Fragment>
-    // </ServerRouter>
+    // </BrowserRouter>
   )
 }
 
