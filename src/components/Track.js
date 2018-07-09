@@ -181,7 +181,6 @@ const TrackMedia = styled('div')`
     transform-origin: top left;
     left: -2rem;
     margin-bottom: -2rem;
-    position: relative;
   }
 `
 const MediaAction = styled('a')`
@@ -217,6 +216,8 @@ const TrackHead = styled('div')`
     padding-top: ${rhythm(2)};
     padding-right: ${rhythm(contentPadding / 2)};
     padding-left: calc(${rhythm(contentPadding / 2)} - ${rhythm(0.25)});
+    margin-left: 0; // reset
+    margin-right: 0; // reset
     margin-bottom: ${rhythm(1)};
     &>* {
       display: inline;
@@ -301,6 +302,7 @@ const TrackBody = styled('div')`
     margin-bottom: ${rhythm(1.5)};
     display: flex;
     align-items: flex-end;
+    justify-content: center;
     .media-action__icon {
       width: ${rhythm(2.5)};
       height: ${rhythm(2.5)};
@@ -311,6 +313,7 @@ const TrackBody = styled('div')`
       transform: rotate(90deg);
       left: -.75rem;
       bottom: .75rem;
+      margin-right: -1.5rem;
     }
   }
   .track-detail__meta {
@@ -380,22 +383,19 @@ const TrackBody = styled('div')`
 `
 const StyledCloseBtn = styled(CloseBtn)`
   position: absolute;
-  top: ${rhythm(0.25)};
-  right: ${rhythm(0.25)};
+  top: 0;
+  right: 0;
   left: auto;
   z-index: 1;
   color: ${props => props.theme.secondary.color};
-  width: ${rhythm(1.5)};
-  height: ${rhythm(1.5)};
+  width: ${rhythm(2)};
+  height: ${rhythm(2)};
+  line-height: ${rhythm(2)};
   font-size: ${rhythm(1.5)};
   /**
   *  MQ 
   */
   ${mq.large(css`
-    top: 0;
-    right: 0;
-    width: ${rhythm(2)};
-    height: ${rhythm(2)};
     font-size: ${rhythm(2)};
   `)};
 `

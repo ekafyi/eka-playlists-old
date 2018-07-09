@@ -85,7 +85,9 @@ export default class IndexPage extends Component {
           //   { name: 'description', content: 'Sample' },
           //   { name: 'keywords', content: 'sample, something' },
           // ]}
-        />
+        >
+           <html lang="en" />
+        </Helmet>
         <Sidebar />
         <div className="posts">
           {this.state.loading ? (

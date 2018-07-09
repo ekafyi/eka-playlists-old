@@ -6,4 +6,4 @@ songUrl: https://bandcamp.com/EmbeddedPlayer/album=214598681/size=large/track=16
 tag: ["nightcap"]
 ---
 
-I am a lazy girl and I 100% approve of this loop.
+I am a lazy girl and I fully approve of this loop.
