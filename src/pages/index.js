@@ -63,11 +63,15 @@ export default class IndexPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      loading: true,
       posts: []
     }
   }
   componentDidMount() {
     this.setState({ posts: this.props.data.allMarkdownRemark.group.reverse() })
+    if(this.props.data.allMarkdownRemark) {
+      this.setState({ loading: false })
+    }
   }
   render() {
     let siteTitle = this.props.data.site.siteMetadata.title + ' | ekamak.es/playlists';
@@ -84,7 +88,11 @@ export default class IndexPage extends Component {
         />
         <Sidebar />
         <div className="posts">
-          <AllPosts node={postsByDate} />
+          {this.state.loading ? (
+            'loading...'
+          ) : (
+            <AllPosts node={postsByDate} />
+          )}
         </div>
       </Layout>
     );

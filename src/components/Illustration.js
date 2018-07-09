@@ -15,7 +15,7 @@ const Disc = styled('svg')`
   transition: all .2s ease-in-out;
   position: absolute;
   width: calc(50% - 2vw);
-  height: 50vw;
+  height: auto;
   right: 0;
   top: -1px;
   margin-right: -27%;

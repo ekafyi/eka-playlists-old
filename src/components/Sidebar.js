@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import styled, { css } from "react-emotion";
 import mq from "../utils/mq";
-import { rhythm } from "../utils/typography";
+import typography, { rhythm } from "../utils/typography";
 import { H4, SmallerText, TextLink } from "./Text";
-//import Link from "gatsby-link";
 
 const StyledSidebar = styled('div')`
   padding: 0 ${props => props.theme.pagePadding.small};
@@ -20,6 +19,11 @@ const StyledSidebar = styled('div')`
   /**
    *  MQ 
    */
+  @media only screen and (max-width: 767px) {
+    .sidebar--intro {
+      font-size: ${typography.toJSON().h5.fontSize};
+    }
+  }
   ${mq.small(css`
     .sidebar--intro {
       width: 75%;
@@ -61,10 +65,10 @@ const Credits = SmallerText.withComponent('div');
 export const CreditsText = (
   <React.Fragment>
     <p>
-      Original content by Eka under <TextLink rel="license" href="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</TextLink>. Powered by <TextLink href="">Gatsby</TextLink> and <TextLink href="">Netlify</TextLink>, hosted on <TextLink href="">Github</TextLink>. Icon by <TextLink href="">Flaticon</TextLink>.
+      © Eka 2018 under <TextLink rel="license" href="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</TextLink>. Powered by <TextLink href="">Gatsby</TextLink>, <TextLink href="">Netlify</TextLink>, and <TextLink href="">Github</TextLink>. Icon by <TextLink href="">Flaticon</TextLink>.
     </p> 
     <p>
-      Find me on <TextLink href="">Twitter</TextLink>, <TextLink href="">Medium</TextLink>, and/or check out my bands <TextLink href="">Nerv.ous</TextLink> and <TextLink href="">Brilliant at Breakfast</TextLink>.
+      Find me on <TextLink href="https://twitter.com/ekaoddlass">Twitter</TextLink> and/or check out my bands <TextLink href="http://yellowmgmt.com/artist/nervous/">Nerv.ous</TextLink> and <TextLink href="https://gerpfastkolektif.bandcamp.com/album/split-album-15">Brilliant at Breakfast</TextLink>.
     </p>
   </React.Fragment>
 )
@@ -75,7 +79,7 @@ export default class Sidebar extends Component {
       <StyledSidebar role="contentinfo">
         <div className="sticky">
           <IntroText className="sidebar--intro">
-            Hi! <span role="img" aria-label="Emoji: Happy person raising one hand">🙋</span> I’m <TextLink href="">Eka</TextLink> and I <TextLink href="#">made this site</TextLink> to keep track of songs I like and the occasional thematic playlists I make. Feel free to look around!
+            Hi! <span role="img" aria-label="Emoji: Happy person raising one hand">🙋</span> I’m <TextLink href="#">Eka</TextLink> and I <TextLink href="#">made this site</TextLink> to keep track of songs I like and the occasional thematic playlists I make. Feel free to look around!
           </IntroText>
           <Credits className="sidebar--siteinfo">
             {CreditsText}
