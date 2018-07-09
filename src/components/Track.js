@@ -386,7 +386,6 @@ const StyledCloseBtn = styled(CloseBtn)`
   top: 0;
   right: 0;
   left: auto;
-  z-index: 1;
   color: ${props => props.theme.secondary.color};
   width: ${rhythm(2)};
   height: ${rhythm(2)};
@@ -395,6 +394,9 @@ const StyledCloseBtn = styled(CloseBtn)`
   /**
   *  MQ 
   */
+  ${mq.medium(css`
+    z-index: 1; // under Disc illustration
+  `)};
   ${mq.large(css`
     font-size: ${rhythm(2)};
   `)};
