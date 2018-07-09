@@ -1,20 +1,46 @@
 import React, { Component } from 'react';
-import styled, { css, keyframes } from "react-emotion";
+import styled, { keyframes } from "react-emotion";
+import { rhythm } from "../utils/typography";
 
+const color1 = '#eee';
+const color2 = '#ddd';
 const topGap = 4;
-const line1 = 20;
-const line1Width = 220;
 const middleGap = 10;
+const line1 = 20;
 const line2 = 14;
-const line2Width = 170;
+let line1Width = 220;
+let line2Width = 170;
 
+const shimmer = keyframes`
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+`
 const PlaceholderItem = styled('div')
 `
 	/**
 	* Placeholder animation effect
 	* from https://codepen.io/nurulishlah/pen/beEGVE
 	*/
-  margin: 0 0 1rem;
+  margin: 0;
+	height: ${rhythm(4)};
+	padding-top: ${rhythm(0.5)};
+
+	.animated-bg {
+		animation-duration: 1.5s;
+		animation-fill-mode: forwards;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+		animation-name: ${shimmer};
+		background-color: ${props => props.theme.secondary.color};
+		background: linear-gradient(to right, ${color1} 8%, ${color2} 18%, ${color1} 33%);
+		background-size: 800px 104px;
+		height: ${topGap + line1 + middleGap + line2}px;
+		position: relative;
+	}
 
 	&>*>* {
 		background-color: ${props => props.theme.secondary.color};
@@ -82,38 +108,15 @@ const PlaceholderItem = styled('div')
 	.s__right {
     left: ${line2Width}px;
 	}
-	
 `
 const Header = styled('div')``
 const Subheader = styled('div')``
-const Content = styled('div')``
-
-const shimmer = keyframes`
-  0% {
-    background-position: -468px 0;
-  }
-  100% {
-    background-position: 468px 0;
-  }
-`
-const animatedBg = css`
-	animation-duration: 1.5s;
-	animation-fill-mode: forwards;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-	animation-name: ${shimmer};
-	background: #4A51A8;
-	background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
-	background-size: 800px 104px;
-	height: ${topGap + line1 + middleGap + line2}px;
-	position: relative;
-`
 
 class Placeholder extends Component {
   render() {
     return (
       <PlaceholderItem>
-        <div className={animatedBg}>
+        <div className="animated-bg">
           <Header className="h__top"></Header>
           <Header className="h__right"></Header>
           <Header className="h__bottom"></Header>

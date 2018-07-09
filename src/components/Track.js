@@ -75,7 +75,7 @@ const TrackContainerGroup = styled('section')`
    *  MQ 
    */
   ${mq.small(css`
-    ul.tracks {
+    .tracks {
       display: grid;
       grid-gap: ${rhythm(0.5)};
       grid-template-columns: repeat(2, 1fr);
@@ -84,7 +84,7 @@ const TrackContainerGroup = styled('section')`
   ${mq.medium(css`
   `)};
   ${mq.large(css`
-    ul.tracks {
+    .tracks {
       grid-template-columns: repeat(4, 1fr);
     }
   `)};
@@ -104,60 +104,59 @@ export class TrackGroup extends Component {
 
 // 3. Placeholder Group
 const PlaceholderTrackGroup = TrackContainerGroup.withComponent('aside');
-const PlaceholderTrackContainer = styled(TrackContainer)`
-  height: ${rhythm(4)};
-  &:hover {
-    background-color: ${props => props.theme.secondary.color};
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='${props => props.theme.bgAccent.color}' fill-opacity='0.7' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 1.5rem;
-  }
-`
 const placeholderStyle = css`
+  position: relative;
+  z-index: 1;
   .track-group--date {
-    background: #aaa;
+    background: rgba(111,111,111,0.25);
     width: 14ch;
+  }
+  .tracks>* {
+    opacity: .75;
   }
 `
 export class PlaceholderGroup extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* 
-        <PlaceholderTrackGroup className={placeholderStyle + ' track-group--placeholder '}>
-          <BoxLabel className="track-group--date">&nbsp; </BoxLabel>
-          <ul className="tracks">
-            <PlaceholderTrackContainer>
-              <Placeholder />
-            </PlaceholderTrackContainer>
-            <PlaceholderTrackContainer>
-              <Placeholder />
-            </PlaceholderTrackContainer>
-            <PlaceholderTrackContainer>
-              <Placeholder />
-            </PlaceholderTrackContainer>
-          </ul>
-        </PlaceholderTrackGroup> 
-        */}
         <PlaceholderTrackGroup className={placeholderStyle}>
           <BoxLabel className="track-group--date">&nbsp; </BoxLabel>
-          <ul className="tracks">
-            <Placeholder></Placeholder>
-            <Placeholder></Placeholder>
-            <Placeholder></Placeholder>
-          </ul>
+          <div className="tracks">
+            <Placeholder line2={40} />
+            <Placeholder />
+            <Placeholder />
+          </div>
         </PlaceholderTrackGroup>
         <PlaceholderTrackGroup className={placeholderStyle}>
           <BoxLabel className="track-group--date">&nbsp; </BoxLabel>
-          <ul className="tracks">
-            <Placeholder></Placeholder>
-            <Placeholder></Placeholder>
-            <Placeholder></Placeholder>
-            <Placeholder></Placeholder>
-            <Placeholder></Placeholder>
-            <Placeholder></Placeholder>
-          </ul>
+          <div className="tracks">
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+          </div>
+        </PlaceholderTrackGroup>
+        <PlaceholderTrackGroup className={placeholderStyle}>
+          <BoxLabel className="track-group--date">&nbsp; </BoxLabel>
+          <div className="tracks">
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+          </div>
         </PlaceholderTrackGroup>
       </React.Fragment>
     );
   }
 }
+
+// // Generate random width
+// // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+// function getRandomInt(min, max) {
+//   min = Math.ceil(min);
+//   max = Math.floor(max);
+//   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+// }
