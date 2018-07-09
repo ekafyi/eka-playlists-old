@@ -46,6 +46,21 @@ export const TrackContainer = styled('li')`
   ${mq.small(css`
     margin-bottom: 0;
   `)};
+
+  /**
+  *  SQ 
+  */
+  @supports not (display: grid) {
+    ${mq.medium(css`
+      margin: ${rhythm(0.5)} ${rhythm(0.25)};
+      flex: 1 0 calc(50% - ${rhythm(0.5)});
+      max-width: calc(50% - ${rhythm(0.5)});
+    `)};
+    ${mq.large(css`
+      flex: 1 0 calc(25% - ${rhythm(0.5)});
+      max-width: calc(25% - ${rhythm(0.5)});
+    `)};
+  }
 }
 `
 const Title = H4.withComponent('div');
@@ -71,9 +86,16 @@ const TrackContainerGroup = styled('section')`
     margin-top: -1px; /* fix bug to maintain vertical rhythm */
     margin-left: 0;
   }
+
   /**
    *  MQ 
    */
+  @media only screen and (max-width: 767px) {
+    .track-group--date {
+      position: sticky;
+      top: 0;
+    }
+  }
   ${mq.small(css`
     .tracks {
       display: grid;
@@ -88,6 +110,21 @@ const TrackContainerGroup = styled('section')`
       grid-template-columns: repeat(4, 1fr);
     }
   `)};
+
+  /**
+  *  SQ 
+  */
+  @supports not (display: grid) {
+    ${mq.medium(css`
+      .tracks {
+        margin-top: calc(${rhythm(-0.25)} - 1px);
+        margin-left: ${rhythm(-0.25)};
+        margin-right: ${rhythm(-0.25)};
+        display: flex;
+        flex-wrap: wrap;
+      }
+    `)};
+  }
 `
 export class TrackGroup extends Component {
   render() {
@@ -113,6 +150,17 @@ const placeholderStyle = css`
   }
   .tracks>* {
     opacity: .75;
+  }
+
+  /**
+  *  SQ 
+  */
+  @supports not (display: grid) {
+    ${mq.medium(css`
+      .track-group--date {
+        margin-bottom: ${rhythm(0.25)};
+      }
+    `)};
   }
 `
 export class PlaceholderGroup extends Component {

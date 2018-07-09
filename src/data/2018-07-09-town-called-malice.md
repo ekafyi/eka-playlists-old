@@ -5,4 +5,4 @@ title: A Town Called Malice
 songUrl: https://www.youtube.com/watch?v=YfpRm-p7qlY
 ---
 
-Working at a coffee shop, this song came up and it inexplicably made me happy. I've got the emotional depth of a gnat.
+Was working at a coffee shop. This song came up and it inexplicably made me happy. Not bad, for a Monday.
