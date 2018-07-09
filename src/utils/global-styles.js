@@ -7,7 +7,7 @@ injectGlobal`
   @media only screen and (max-width: 479px) {
     html.has-overlay--xs {
       &,
-      body {
+      body, body:after {
         overflow: hidden;
       }
       body:after {
@@ -18,8 +18,10 @@ injectGlobal`
         left: 0;
         right: 0;
         bottom: 0;
-        opacity: .4;
+        opacity: .5;
         background: #000;
+        height: 100%;
+        height: 100vh;
       }
     }
   }

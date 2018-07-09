@@ -19,11 +19,7 @@ const StyledSidebar = styled('div')`
   /**
    *  MQ 
    */
-  @media only screen and (max-width: 767px) {
-    .sidebar--intro {
-      font-size: ${typography.toJSON().h5.fontSize};
-    }
-  }
+  @media only screen and (max-width: 767px) { }
   ${mq.small(css`
     .sidebar--intro {
       width: 75%;
@@ -57,6 +53,24 @@ const StyledSidebar = styled('div')`
       font-size: 1em; /* make text smaller so entire sidebar fits screen height */
       line-height: 1.325rem;
     }
+  }
+
+  /**
+  *  SQ 
+  */
+  @supports not (display: grid) {
+    ${mq.medium(css`
+      width: 25%;
+      & + .posts {
+        width: calc(75% - 1rem);
+      }
+    `)};
+    ${mq.large(css`
+      width: 18.75%;
+      & + .posts {
+        width: 75%;
+      }
+    `)};
   }
 `
 const IntroText = H4.withComponent('div');

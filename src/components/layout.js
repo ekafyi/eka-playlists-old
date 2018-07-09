@@ -44,6 +44,7 @@ const mainStyles = css`
   .full-width {
     grid-column: 1/4;
   }
+
   /**
    *  MQ 
    */
@@ -51,6 +52,15 @@ const mainStyles = css`
     display: grid;
     grid-template-columns: minmax(13rem, 3fr) minmax(auto, 75%) 1fr;
   `)};
+
+  /**
+  *  SQ 
+  */
+  @supports not (display: grid) {
+    ${mq.medium(css`
+      display: flex;
+    `)};
+  }
 `
 
 class Layout extends Component {

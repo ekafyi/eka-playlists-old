@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import Helmet from "react-helmet"
 import Layout from "../components/layout"
 import Sidebar from "../components/Sidebar"
-import Track, { TrackGroup, TrackDetail } from "../components/Track";
+import Track, { TrackGroup, TrackContainer, PlaceholderGroup } from "../components/Track";
+import TrackDetail from "../components/TrackDetail";
 import TransitionContainer from "../components/TransitionContainer";
 //import Route from "react-router-dom/Route";
 import { BrowserRouter, Route } from 'react-router-dom';
 import styled, { css } from 'react-emotion'
 import moment from 'moment';
+import Placeholder from "../components/Placeholder";
 
 const AllPosts = ({node}) => {
   let postsByDate = node
@@ -91,9 +93,9 @@ export default class IndexPage extends Component {
         <Sidebar />
         <div className="posts">
           {this.state.loading ? (
-            'loading...'
-          ) : (
             <AllPosts node={postsByDate} />
+          ) : (
+            <PlaceholderGroup />
           )}
         </div>
       </Layout>
