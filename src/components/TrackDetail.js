@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { css } from "react-emotion";
+import styled, { css, keyframes } from "react-emotion";
 import mq from "../utils/mq";
 import typography, { rhythm } from "../utils/typography";
 import { CloseBtn } from './Button';
@@ -60,16 +60,18 @@ const StyledTrackDetail = styled('article')`
   `)};
 `
 const TrackMedia = styled('div')`
+  padding-left: ${rhythm(0.5)};
   &,
   &>* {
-    height: ${rhythm(boxHeight)};
+    height: calc(${rhythm(boxHeight)} - ${rhythm(0.5)});
     position: sticky !important;
-    top: 0;
+    top: ${rhythm(0.5)};
   }
   iframe {
     border: 0;
     width: 100%;
     margin-bottom: -.5rem; /* gap bugfix */
+    z-index: 1; /* over loading icon */
   }
   .track-media__action-container {
     display: flex;
@@ -302,6 +304,73 @@ const StyledCloseBtn = styled(CloseBtn)`
     font-size: ${rhythm(2)};
   `)};
 `
+const barFloat = keyframes`
+  0%, 100% {
+    transform: translateY(4px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+`
+const LoadingIcon = styled('aside')`
+  position: absolute !important; // override sticky
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  .bars {
+    margin: 0 auto;
+    display: inline-block;
+  }
+  .bars li {
+    height: 28px;
+    width: 5px;
+    background: ${props => props.theme.secondary.color};
+    float: left;
+    margin: 3px;
+    animation: ${barFloat} 1.8s infinite;
+    &:nth-child(1) {
+      height: 18px;
+      margin-top: 7px;
+      animation-delay: .1s;
+    }
+    &:nth-child(2) {
+      height: 22px;
+      margin-top: 5px;
+      animation-delay: .2s;
+    }
+    &:nth-child(3) {
+      animation-delay: .3s;
+    }
+    &:nth-child(4) {
+      animation-delay: .4s;
+    }
+    &:nth-child(5) {
+      height: 22px;
+      margin-top: 5px;
+      animation-delay: .5s;
+    }
+    &:nth-child(6) {
+      height: 18px;
+      margin-top: 7px;
+      animation-delay: .6s;
+    }
+  }
+`
+const loading = (
+  <LoadingIcon>
+    <ul className="bars">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </LoadingIcon>
+);
 class TrackDetail extends Component {
   constructor(props) {
     super(props);
@@ -354,7 +423,10 @@ class TrackDetail extends Component {
         <MediaQuery query="(min-device-width: 768px)">
           <TrackMedia>
             {track.frontmatter.songUrl && this.getEmbedUrl(track.frontmatter.songUrl) ? (
-                <iframe src={this.getEmbedUrl(track.frontmatter.songUrl)} frameBorder="0" allow="encrypted-media" allowFullScreen allowtransparency="true" title={track.frontmatter.title + 'by' + track.frontmatter.artist} />
+              <React.Fragment>
+                <iframe src={this.getEmbedUrl(track.frontmatter.songUrl)} frameBorder="0" allow="encrypted-media" allowFullScreen allowtransparency="true" title={track.frontmatter.title + 'by' + track.frontmatter.artist}/>
+                {loading}
+              </React.Fragment>
               ) : (
                 track.frontmatter.songUrl ? (
                   <div className="track-media__action-container">

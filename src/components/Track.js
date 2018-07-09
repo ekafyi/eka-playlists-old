@@ -46,21 +46,6 @@ export const TrackContainer = styled('li')`
   ${mq.small(css`
     margin-bottom: 0;
   `)};
-
-  /**
-  *  SQ 
-  */
-  @supports not (display: grid) {
-    ${mq.medium(css`
-      margin: ${rhythm(0.5)} ${rhythm(0.25)};
-      flex: 1 0 calc(50% - ${rhythm(0.5)});
-      max-width: calc(50% - ${rhythm(0.5)});
-    `)};
-    ${mq.large(css`
-      flex: 1 0 calc(25% - ${rhythm(0.5)});
-      max-width: calc(25% - ${rhythm(0.5)});
-    `)};
-  }
 }
 `
 const Title = H4.withComponent('div');
@@ -122,6 +107,17 @@ const TrackContainerGroup = styled('section')`
         margin-right: ${rhythm(-0.25)};
         display: flex;
         flex-wrap: wrap;
+        &>* {
+          margin: ${rhythm(0.5)} ${rhythm(0.25)};
+          flex: 1 0 calc(50% - ${rhythm(0.5)});
+          max-width: calc(50% - ${rhythm(0.5)});
+        }
+      }
+    `)};
+    ${mq.large(css`
+      .tracks>* {
+        flex: 1 0 calc(25% - ${rhythm(0.5)});
+        max-width: calc(25% - ${rhythm(0.5)});
       }
     `)};
   }
@@ -170,7 +166,7 @@ export class PlaceholderGroup extends Component {
         <PlaceholderTrackGroup className={placeholderStyle}>
           <BoxLabel className="track-group--date">&nbsp; </BoxLabel>
           <div className="tracks">
-            <Placeholder line2={40} />
+            <Placeholder className="is-flex" />
             <Placeholder />
             <Placeholder />
           </div>
