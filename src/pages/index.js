@@ -65,14 +65,14 @@ export default class IndexPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: true,
+      loadingFinish: false,
       posts: []
     }
   }
   componentDidMount() {
     this.setState({ posts: this.props.data.allMarkdownRemark.group.reverse() })
     if(this.props.data.allMarkdownRemark) {
-      this.setState({ loading: false })
+      this.setState({ loadingFinish: true })
     }
   }
   render() {
@@ -92,7 +92,7 @@ export default class IndexPage extends Component {
         </Helmet>
         <Sidebar />
         <div className="posts">
-          {this.state.loading ? (
+          {this.state.loadingFinish ? (
             <AllPosts node={postsByDate} />
           ) : (
             <PlaceholderGroup />

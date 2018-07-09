@@ -80,21 +80,6 @@ class Layout extends Component {
         render={data => (
           <ThemeProvider theme={themeObject}>
             <div className={wrapperStyles + ` wrapper`}>
-              {/* example of link with const css
-              <Link to={`/`}>
-                <h3 className={siteTitleClass}>
-                  {data.site.siteMetadata.title}
-                </h3>
-              </Link> */}
-              {/* example of emotion inline css
-              <Link
-                to={`/about/`}
-                className={css`
-                  float: right;
-                `}
-              >
-                About
-              </Link> */}
               {!this.props.debugMode && <MainTitle />}
               <main role="main" className={mainStyles}>
                 {this.props.children}
