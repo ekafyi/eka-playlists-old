@@ -45,6 +45,17 @@ injectGlobal`
     outline-color: coral;
   }
 
+  /* https://snook.ca/archives/html_and_css/hiding-content-for-accessibility 
+    Hide visually for screen readers only
+  */
+  .sr-only { 
+    position: absolute !important;
+    height: 1px; width: 1px; 
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+  }
+
   /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126
     License: none (public domain)

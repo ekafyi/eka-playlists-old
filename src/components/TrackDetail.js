@@ -130,7 +130,7 @@ const TrackHead = styled('div')`
       padding: 0 ${rhythm(0.25)};
       color: ${props => props.theme.secondary.color};
       background: ${props => props.theme.primary.color};
-      font-size: ${typography.toJSON().h4.fontSize};
+      font-size: ${typography.toJSON().h5.fontSize};
     }
   }
 
@@ -144,11 +144,7 @@ const TrackHead = styled('div')`
     &.has-quote {
       margin-bottom: ${rhythm(1)};
     }
-    blockquote {
-      &>* {
-        font-size: ${typography.toJSON().h5.fontSize};
-      }
-    }
+    blockquote {}
   `)};
   ${mq.large(css`
     blockquote {
@@ -312,7 +308,7 @@ const barFloat = keyframes`
     transform: translateY(-4px);
   }
 `
-const LoadingIcon = styled('aside')`
+const LoadingIcon = styled('div')`
   position: absolute !important; // override sticky
   top: 0;
   left: 0;
@@ -360,7 +356,7 @@ const LoadingIcon = styled('aside')`
   }
 `
 const loading = (
-  <LoadingIcon>
+  <LoadingIcon aria-hidden="true">
     <ul className="bars">
       <li></li>
       <li></li>
@@ -457,10 +453,11 @@ class TrackDetail extends Component {
           <TrackHead 
             className={(track.frontmatter.quote && ' has-quote ') + ' pattern-box '}
           >
-            <StyledCloseBtn to="/">&#x2715;</StyledCloseBtn>
+            <StyledCloseBtn to="/" aria-label="Close">&#x2715;</StyledCloseBtn>
             {track.frontmatter.quote && <blockquote><span>{track.frontmatter.quote}</span></blockquote>}
           </TrackHead>
           <TrackBody>
+            <h2 className="sr-only">{track.frontmatter.title}</h2>
             <MediaQuery query="(max-device-width: 767px)">
               <header className="track-detail__h">
                 <h2>{track.frontmatter.title}</h2>
@@ -493,12 +490,13 @@ class TrackDetail extends Component {
               />
             }
             <aside className="track-detail__meta">
+              <h5 className="sr-only">Related to this track</h5>
               <div className="track-detail__meta-item">
                 <span>
                   <a href={'https://www.discogs.com/search/?q=' + track.frontmatter.artist.split(' ').join('+')} target="_blank">
                     more by {track.frontmatter.artist}
                   </a>
-                  {/* <Link to="/under-construction">more by {track.frontmatter.artist}</Link> */}
+                  {/* <Link to="/under-construction" rel="tag">more by {track.frontmatter.artist}</Link> */}
                 </span>
               </div>
               {track.frontmatter.tag && (
@@ -510,7 +508,7 @@ class TrackDetail extends Component {
                       {track.frontmatter.tag.map((tag) => (
                         <li key={tag} className="tags__tag">
                           <em>{tag}</em>
-                          {/* <Link key={tag} to="/under-construction"> <em>{tag}</em> </Link> */}
+                          {/* <Link key={tag} to="/under-construction" rel="tag"> <em>{tag}</em> </Link> */}
                         </li>
                       ))}
                     </ul>

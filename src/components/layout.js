@@ -40,7 +40,7 @@ const wrapperStyles = css`
     overflow: initial; /* return to initial to enable position: sticky */
   `)};
 `
-const mainStyles = css`
+const contentStyles = css`
   .full-width {
     grid-column: 1/4;
   }
@@ -79,20 +79,21 @@ class Layout extends Component {
         }
         render={data => (
           <ThemeProvider theme={themeObject}>
-            <div className={wrapperStyles + ` wrapper`}>
-              {!this.props.debugMode && <MainTitle />}
-              <main role="main" className={mainStyles}>
-                {this.props.children}
-              </main>
-              {!this.props.debugMode && 
-                <React.Fragment>
-                  <Illustration 
-                    //animate={isScrolling ? true : false}
-                  />
-                  <Footer />
-                </React.Fragment>
-              }
-            </div>
+            <React.Fragment>
+              <a href="#content" className="sr-only">Skip to main content</a>
+              <div className={wrapperStyles + ` wrapper`}>
+                {!this.props.debugMode && <MainTitle />}
+                <div id="content" className={contentStyles + ` content`}>
+                  {this.props.children}
+                </div>
+                {!this.props.debugMode && 
+                  <React.Fragment>
+                    <Illustration />
+                    <Footer />
+                  </React.Fragment>
+                }
+              </div>
+            </React.Fragment>
           </ThemeProvider>
         )}
       />

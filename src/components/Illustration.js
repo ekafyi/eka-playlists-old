@@ -72,7 +72,9 @@ export default class Illustration extends Component {
     return (
       <Disc className={'disc-illustration ' + (this.props.animate ? ' is-animated ' : '')}
         transform="rotate(180)" enable-background="new 0 0 32.009 32.009" viewBox="0 0 32.009 32.009" xmlns="http://www.w3.org/2000/svg"
+        role="img"
       >
+        <title>Circular icon resembling record or CD</title>
         <circle
            cx="16" cy="16" r="16"
         />
@@ -98,8 +100,3 @@ export default class Illustration extends Component {
     );
   }
 } 
-{/* <Disc role="presentation"
-  version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 235.592 235.592" id="record_circular"
->
-  <g><path d="M117.795,0.002C52.843,0.002,0,52.844,0,117.795C0,182.747,52.843,235.59,117.795,235.59 c64.953,0,117.797-52.843,117.797-117.795C235.592,52.844,182.748,0.002,117.795,0.002z M117.795,220.59 C61.113,220.59,15,174.477,15,117.795C15,61.114,61.113,15.002,117.795,15.002c56.683,0,102.797,46.112,102.797,102.793 C220.592,174.477,174.477,220.59,117.795,220.59z"></path> <path d="M117.795,64.04c-29.641,0-53.756,24.115-53.756,53.756s24.115,53.756,53.756,53.756c29.642,0,53.757-24.115,53.757-53.756 S147.436,64.04,117.795,64.04z M117.795,156.552c-21.37,0-38.756-17.386-38.756-38.756S96.425,79.04,117.795,79.04 s38.757,17.386,38.757,38.756S139.165,156.552,117.795,156.552z"></path> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g>
-</Disc> */}

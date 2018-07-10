@@ -46,6 +46,17 @@ export const TrackContainer = styled('li')`
   ${mq.small(css`
     margin-bottom: 0;
   `)};
+
+  /**
+  *  SQ 
+  */
+  @supports not (display: grid) {
+    display: flex; // Safari 10 fix
+    flex-flow: column;
+    &>a {
+      flex-grow: 1;
+    }
+  }
 }
 `
 const Title = H4.withComponent('div');
@@ -56,6 +67,7 @@ export default class Track extends Component {
       <TrackContainer>
         <Link to={this.props.slug ? this.props.slug : '/test'} activeClassName="active">
           <Title className="track--title">{this.props.title}</Title>
+          <small className="sr-only">by</small>
           <Artist className="track--artist">{this.props.artist}</Artist>
         </Link>
       </TrackContainer>

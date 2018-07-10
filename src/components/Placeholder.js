@@ -115,7 +115,7 @@ const Subheader = styled('div')``
 class Placeholder extends Component {
   render() {
     return (
-      <PlaceholderItem>
+      <PlaceholderItem role="presentation">
         <div className="animated-bg">
           <Header className="h__top"></Header>
           <Header className="h__right"></Header>

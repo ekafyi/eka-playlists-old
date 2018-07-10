@@ -76,7 +76,7 @@ export default class IndexPage extends Component {
     }
   }
   render() {
-    let siteTitle = this.props.data.site.siteMetadata.title + ' | ekamak.es/playlists';
+    let siteTitle = 'Eka is listening to... | ekamak.es/playlists';
     let postsByDate = [];
     postsByDate = this.state.posts;
     return (
@@ -91,13 +91,13 @@ export default class IndexPage extends Component {
            <html lang="en" />
         </Helmet>
         <Sidebar />
-        <div className="posts">
+        <main role="main" className="posts">
           {this.state.loadingFinish ? (
             <AllPosts node={postsByDate} />
           ) : (
             <PlaceholderGroup />
           )}
-        </div>
+        </main>
       </Layout>
     );
   }
@@ -105,11 +105,6 @@ export default class IndexPage extends Component {
 
 export const query = graphql`
   query IndexQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
       group(field: frontmatter___date) {
         fieldValue

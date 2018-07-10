@@ -77,7 +77,7 @@ const StyledMainTitle = styled(H1)`
 export default class MainTitle extends Component {
   render() {
     return (
-      <StyledMainTitle role="header">
+      <StyledMainTitle role="banner">
         <Link to="/">
           eka <span><span>is / was /</span> <span>has been</span></span> listening to...
         </Link>

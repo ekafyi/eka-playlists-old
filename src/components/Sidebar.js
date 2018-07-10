@@ -3,6 +3,7 @@ import styled, { css } from "react-emotion";
 import mq from "../utils/mq";
 import typography, { rhythm } from "../utils/typography";
 import { H4, SmallerText, TextLink } from "./Text";
+import MediaQuery from 'react-responsive';
 
 const StyledSidebar = styled('div')`
   padding: 0 ${props => props.theme.pagePadding.small};
@@ -11,9 +12,6 @@ const StyledSidebar = styled('div')`
   }
   .sidebar--intro {
     margin-bottom: ${rhythm(1.5)};
-  }
-  .sidebar--siteinfo {
-    display: none; /* hide for xs, ❗TODO: figure out where to put credits */
   }
 
   /**
@@ -38,7 +36,6 @@ const StyledSidebar = styled('div')`
       width: 100%; /* override small style */
     }
     .sidebar--siteinfo {
-      display: block; /* override small style */
       grid-row: 3/4;
     }
   `)};
@@ -73,16 +70,16 @@ const StyledSidebar = styled('div')`
     `)};
   }
 `
-const IntroText = H4.withComponent('div');
-const Credits = SmallerText.withComponent('div');
+const IntroText = H4.withComponent('aside');
+const Credits = SmallerText.withComponent('footer');
 
 export const CreditsText = (
   <React.Fragment>
     <p>
-      © Eka 2018 under <TextLink rel="license" href="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</TextLink>. Powered by <TextLink href="">Gatsby</TextLink>, <TextLink href="">Netlify</TextLink>, and <TextLink href="">Github</TextLink>. Icon by <TextLink href="">Flaticon</TextLink>.
+      © Eka 2018 under <TextLink href="http://creativecommons.org/licenses/by/4.0/" rel="license">CC-BY 4.0</TextLink>. Powered by <TextLink href="https://www.gatsbyjs.org/" rel="external">Gatsby</TextLink>, <TextLink href="https://netlify.com/" rel="external">Netlify</TextLink>, and <TextLink href="https://github.com/ekaoddlass/eka-playlists" rel="external">Github</TextLink>. Icon by <TextLink href="http://flaticon.com/" rel="external">Flaticon</TextLink>.
     </p> 
     <p>
-      Find me on <TextLink href="https://twitter.com/ekaoddlass">Twitter</TextLink> and/or check out my bands <TextLink href="http://yellowmgmt.com/artist/nervous/">Nerv.ous</TextLink> and <TextLink href="https://gerpfastkolektif.bandcamp.com/album/split-album-15">Brilliant at Breakfast</TextLink>.
+      Find me on <TextLink href="https://twitter.com/ekaoddlass" rel="external">Twitter</TextLink> and/or check out my bands <TextLink href="http://yellowmgmt.com/artist/nervous/" rel="external">Nerv.ous</TextLink> and <TextLink href="https://gerpfastkolektif.bandcamp.com/album/split-album-15" rel="external">Brilliant at Breakfast</TextLink>.
     </p>
   </React.Fragment>
 )
@@ -90,14 +87,17 @@ export const CreditsText = (
 export default class Sidebar extends Component {
   render() {
     return (
-      <StyledSidebar role="contentinfo">
+      <StyledSidebar className="sidebar">
         <div className="sticky">
-          <IntroText className="sidebar--intro">
-            Hi! <span role="img" aria-label="Emoji: Happy person raising one hand">🙋</span> I’m <TextLink href="#">Eka</TextLink> and I <TextLink href="#">made this site</TextLink> to keep track of songs I like and the occasional thematic playlists I make. Feel free to look around!
+          <IntroText className="sidebar--intro" aria-labelledby="welcome">
+            <h5 className="sr-only" id="welcome">Welcome message</h5>
+            Hi! <span role="img" aria-label="Emoji: Happy person raising one hand">🙋</span> I’m <TextLink rel="author" href="https://ekamak.es">Eka</TextLink> and I made this site to keep track of songs I like and the occasional thematic playlists I make. Feel free to look around!
           </IntroText>
-          <Credits className="sidebar--siteinfo">
-            {CreditsText}
-          </Credits>
+          <MediaQuery query="(min-device-width: 768px)">
+            <Credits className="sidebar--siteinfo" role="contentinfo">
+              {CreditsText}
+            </Credits>
+          </MediaQuery>
         </div>
       </StyledSidebar>
     );
