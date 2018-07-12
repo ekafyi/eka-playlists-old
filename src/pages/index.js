@@ -76,7 +76,7 @@ export default class IndexPage extends Component {
     }
   }
   render() {
-    let siteTitle = 'Eka is listening to... | ekamak.es/playlists';
+    let siteTitle = 'Eka is listening to... | Eka’s Playlists';
     let postsByDate = [];
     postsByDate = this.state.posts;
     return (

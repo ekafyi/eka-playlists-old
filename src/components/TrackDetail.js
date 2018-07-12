@@ -36,10 +36,14 @@ const StyledTrackDetail = styled('article')`
    */
   @media only screen and (max-width: 479px) {
     position: fixed;
-    top: 8vh;
-    bottom: 8vh;
-    left: 1rem;
-    right: 2rem;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-left: 1rem;
+    margin-right: 2rem;
     z-index: 9;
     margin-bottom: 0;
   }
