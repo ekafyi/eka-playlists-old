@@ -61,9 +61,9 @@ const Disc = styled('svg')`
   `)};
   @media only screen and (min-width: 1440px) {
     position: absolute;
-    width: 22.5rem;
-    height: 22.5rem;
-    margin-top: -11.25rem;
+    width: 21rem;
+    height: 21rem;
+    margin-top: -10.5rem;
   }
 `
 

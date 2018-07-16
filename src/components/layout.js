@@ -34,7 +34,7 @@ injectGlobal`
 const wrapperStyles = css`
   position: relative; /* prevent Illustration stretching body in xs */
   overflow: hidden; /* prevent Illustration stretching body in xs */
-  max-width: 90rem;
+  max-width: 100rem;
   margin: 0 auto;
   ${mq.medium(css`
     overflow: initial; /* return to initial to enable position: sticky */

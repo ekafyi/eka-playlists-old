@@ -45,7 +45,6 @@ const StyledTrackDetail = styled('article')`
     margin-left: 1rem;
     margin-right: 2rem;
     z-index: 9;
-    margin-bottom: 0;
   }
   ${mq.medium(css`
     height: ${rhythm(boxHeight)};
