@@ -80,10 +80,10 @@ class Layout extends Component {
         render={data => (
           <ThemeProvider theme={themeObject}>
             <React.Fragment>
-              <a href="#content" className="sr-only">Skip to main content</a>
+              <a href="#main" className="sr-only">Skip to main content</a>
               <div className={wrapperStyles + ` wrapper`}>
                 {!this.props.debugMode && <MainTitle />}
-                <div id="content" className={contentStyles + ` content`}>
+                <div className={contentStyles + ` content`}>
                   {this.props.children}
                 </div>
                 {!this.props.debugMode && 

@@ -91,7 +91,7 @@ export default class IndexPage extends Component {
            <html lang="en" />
         </Helmet>
         <Sidebar />
-        <main role="main" className="posts">
+        <main role="main" className="posts" id="main">
           {this.state.loadingFinish ? (
             <AllPosts node={postsByDate} />
           ) : (

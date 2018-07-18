@@ -40,8 +40,8 @@ const StyledTrackDetail = styled('article')`
     bottom: 0;
     left: 0;
     right: 0;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    margin-top: 8vh;
+    margin-bottom: 8vh;
     margin-left: 1rem;
     margin-right: 2rem;
     z-index: 9;
@@ -165,10 +165,10 @@ const TrackBody = styled('div')`
   padding-left: ${rhythm(contentPadding / 2)};
   padding-right: ${rhythm(contentPadding / 2)};
   position: relative;
-  display: flex;
+  ${'' /* display: flex;
   flex-flow: column;
-  justify-content: end; /** Firefox */
-  justify-content: flex-end; /** Chrome */
+  justify-content: end; // Firefox
+  justify-content: flex-end; // Chrome */}
   .track-detail__body {
     font-size: ${typography.toJSON().h6.fontSize};
     margin-bottom: ${rhythm(1)};
@@ -256,12 +256,22 @@ const TrackBody = styled('div')`
   */
   @media only screen and (max-width: 767px) {
   }
+  ${mq.medium(css`
+    .track-detail__body {
+      margin-bottom: ${rhythm(2)};
+    }
+    .track-detail__meta {
+      position: absolute;
+      bottom: 1rem;
+    }
+  `)}
   ${mq.large(css`
     padding-left: ${rhythm(contentPadding)};
     padding-right: ${rhythm(contentPadding)};
     .track-detail__body { }
     .track-detail__meta {
-      width: calc(100% + ${rhythm(contentPadding)});
+      //width: calc(100% + ${rhythm(contentPadding)});
+      width: 100%;
       margin-left: ${rhythm(contentPadding * -1)};
       font-size: 1rem;
       &-item {
@@ -418,7 +428,7 @@ class TrackDetail extends Component {
     let track = {}
     track = this.props.data;
     return (
-      <StyledTrackDetail className="track-detail">
+      <StyledTrackDetail className="track-detail" aria-labelledby={track.frontmatter.title.split(' ').join('_')}>
         <MediaQuery query="(min-device-width: 768px)">
           <TrackMedia>
             {track.frontmatter.songUrl && this.getEmbedUrl(track.frontmatter.songUrl) ? (
@@ -460,7 +470,7 @@ class TrackDetail extends Component {
             {track.frontmatter.quote && <blockquote><span>{track.frontmatter.quote}</span></blockquote>}
           </TrackHead>
           <TrackBody>
-            <h2 className="sr-only">{track.frontmatter.title}</h2>
+            <h2 className="sr-only" id={track.frontmatter.title.split(' ').join('_')}>{track.frontmatter.title}</h2>
             <MediaQuery query="(max-device-width: 767px)">
               <header className="track-detail__h">
                 <h2>{track.frontmatter.title}</h2>

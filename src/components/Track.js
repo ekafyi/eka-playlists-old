@@ -137,8 +137,8 @@ const TrackContainerGroup = styled('section')`
 export class TrackGroup extends Component {
   render() {
     return (
-      <TrackContainerGroup>
-        <BoxLabel className="track-group--date">
+      <TrackContainerGroup aria-labelledby={this.props.date.split(' ').join('_')}>
+        <BoxLabel className="track-group--date" id={this.props.date.split(' ').join('_')}>
           {this.props.date}
         </BoxLabel>
         {this.props.children}

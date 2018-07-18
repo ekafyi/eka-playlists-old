@@ -16,6 +16,7 @@
     "gatsby-plugin-emotion": "^1.1.17",
     "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-typography": "^1.7.19",
+    "gatsby-remark-smartypants": "^1.4.12",
     "gatsby-source-filesystem": "^1.5.39",
     "gatsby-transformer-json": "^1.0.20",
     "gatsby-transformer-remark": "^1.7.44",
