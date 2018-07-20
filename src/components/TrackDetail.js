@@ -258,7 +258,7 @@ const TrackBody = styled('div')`
   }
   ${mq.medium(css`
     .track-detail__body {
-      margin-bottom: ${rhythm(2)};
+      margin-bottom: ${rhythm(3)};
     }
     .track-detail__meta {
       position: absolute;
