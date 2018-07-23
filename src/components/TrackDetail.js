@@ -433,7 +433,7 @@ class TrackDetail extends Component {
           <TrackMedia>
             {track.frontmatter.songUrl && this.getEmbedUrl(track.frontmatter.songUrl) ? (
               <React.Fragment>
-                <iframe src={this.getEmbedUrl(track.frontmatter.songUrl)} frameBorder="0" allow="encrypted-media" allowFullScreen allowtransparency="true" title={track.frontmatter.title + 'by' + track.frontmatter.artist}/>
+                <iframe src={this.getEmbedUrl(track.frontmatter.songUrl)} frameBorder="0" allow="encrypted-media" allowFullScreen allowtransparency="true" title={track.frontmatter.title + ' by ' + track.frontmatter.artist}/>
                 {loading}
               </React.Fragment>
               ) : (

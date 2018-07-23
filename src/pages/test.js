@@ -1,7 +1,6 @@
 import React from "react"
 import Helmet from "react-helmet"
 import Layout from "../components/layout"
-import Placeholder from "../components/Placeholder"
 
 import TransitionContainer from  "../components/TransitionContainer"
 
@@ -19,8 +18,6 @@ export default ({ data }) => (
       {/* example of calling graphql data 
       <h3>This site is called: {data.site.siteMetadata.title}</h3>
       */}
-      <Placeholder />
-      <Placeholder />
       <h4>And now for something different</h4>
       <p>Here is a pic of pandas eating bamboo.</p>
       <img

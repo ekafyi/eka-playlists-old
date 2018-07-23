@@ -49,7 +49,7 @@ const SinglePost = ({node}) => {
   let track = node
   const StyledTransitionContainer = styled(TransitionContainer)``
   return (
-    <StyledTransitionContainer>
+    <div>
       <Helmet
         title={'Eka is listening to... ' + track.frontmatter.title + ' by ' + track.frontmatter.artist}
       >
@@ -57,7 +57,7 @@ const SinglePost = ({node}) => {
         <body className="is-single" />
       </Helmet>
       <TrackDetail data={track} />
-    </StyledTransitionContainer>
+    </div>
   )
 }
 

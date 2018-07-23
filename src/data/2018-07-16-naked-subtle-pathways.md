@@ -6,4 +6,4 @@ songUrl: https://open.spotify.com/track/5qruf7UdJ7Grs2kZfrgDKT
 tag: ["nightcap", "new find"]
 ---
 
-Lovely song and all, although all track titles in the album _Numb Years_ (2017) sound like they were randomly generated on a computer.
+Good song. Very very good album (_Numb Years_, 2017), in fact, although all track titles in there sound like they were randomly generated on a computer. One of my recent go-to albums to play at night.
