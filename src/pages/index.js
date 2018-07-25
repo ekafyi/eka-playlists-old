@@ -105,7 +105,7 @@ export default class IndexPage extends Component {
 
 export const query = graphql`
   query IndexQuery {
-    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+    allMarkdownRemark {
       group(field: frontmatter___date) {
         fieldValue
         totalCount

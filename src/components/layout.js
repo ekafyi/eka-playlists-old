@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StaticQuery } from "gatsby";
-import { injectGlobal } from "react-emotion";
+import styled, { injectGlobal } from "react-emotion";
 import themeObject from "../utils/colors";
 import mq from "../utils/mq";
 import "../utils/global-styles";
@@ -10,7 +10,7 @@ import MainTitle from "./Title";
 import Illustration from "./Illustration";
 import Footer from "./Footer";
 import { rhythm } from "../utils/typography";
-import TransitionContainer from './TransitionContainer';
+//import TransitionContainer from './TransitionContainer';
 //import IsScrolling from "react-is-scrolling";
 
 injectGlobal`
@@ -40,11 +40,25 @@ const wrapperStyles = css`
     overflow: initial; /* return to initial to enable position: sticky */
   `)};
 `
-const contentStyles = css`
+const Content = styled('div')`
   .full-width {
     grid-column: 1/4;
   }
-
+  .pattern-box {
+    background-color: ${props => props.theme.primary.color};
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.2' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 1.5rem;
+  }
+  .invert-body-text a {
+    color: ${props => props.theme.secondary.color};
+    border-bottom: ${rhythm(0.125)} solid #313886;
+    padding: 0 2px;
+    &:hover {
+      border-bottom-color: transparent;
+      background: ${props => props.theme.secondary.color};
+      color: ${props => props.theme.primary.color};
+    }
+  }
   /**
    *  MQ 
    */
@@ -83,9 +97,9 @@ class Layout extends Component {
               <a href="#main" className="sr-only">Skip to main content</a>
               <div className={wrapperStyles + ` wrapper`}>
                 {!this.props.debugMode && <MainTitle />}
-                <div className={contentStyles + ` content`}>
+                <Content className='content'>
                   {this.props.children}
-                </div>
+                </Content>
                 {!this.props.debugMode && 
                   <React.Fragment>
                     <Illustration />

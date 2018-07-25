@@ -1,0 +1,168 @@
+
+// 3b. TrackDetail (not used)
+
+const StyledTrackDetail = styled('article')`
+  background-color: ${props => props.theme.primary.color};
+  overflow: auto;
+  * {
+    color: ${props => props.theme.secondary.color};
+  }
+  .track-detail__h {
+    h1 {
+      padding-top: ${rhythm(0.5)};
+    }
+  }
+  .nav--btn {
+    background-color: ${props => props.theme.primary.color};
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.2' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 1.5rem;
+    &:hover {
+      background: ${props => props.theme.secondary.color};
+      a {
+        color: ${props => props.theme.primary.color};
+      }
+    }
+  }
+  /**
+   *  MQ 
+   */
+  ${mq.small(css`
+  `)};
+  ${mq.medium(css`
+    border-top: ${rhythm(0.5)} solid #4A51A8;
+    padding: ${rhythm(1)};
+    height: 87.5vh;
+    .track-detail__h {
+      max-width: 87.5%;
+      margin-bottom: ${rhythm(2)};
+    }
+  `)};
+  ${mq.large(css`
+  `)};
+`
+const TrackContent = styled('div')`
+
+  /**
+   *  MQ 
+   */
+  ${mq.small(css`
+  `)};
+  ${mq.medium(css`
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: 6fr minmax(15rem, 4fr) 6fr; /* no extra content */
+    &.has-extra-content {
+      grid-template-columns: 1fr minmax(15rem,4fr) 1fr minmax(30rem, 8fr) 2fr;
+    }
+    .track-detail__extra-content {
+      grid-row: 1/3;
+      grid-column: 4;
+    }
+  `)};
+`
+const TrackImage = styled('div')`
+  background-color: #36458F;
+  grid-column: 2;
+  grid-row: 1;
+  img {
+    width: 18.75vw;
+    height: 18.75vw;
+    min-width: 15rem;
+    min-height: 15rem;
+    mix-blend-mode: luminosity;
+    margin-top: -1rem;
+    margin-bottom: calc(1rem - 6px); /* bottom margin bug fix */
+    margin-left: -1.5rem;
+    &:hover {
+      mix-blend-mode: normal;
+    }
+  }
+  /**
+   *  MQ 
+   */
+  ${mq.small(css`
+  `)};
+  ${mq.medium(css`
+  `)};
+`
+const TrackMeta = styled('aside')`
+  grid-column: 3;
+  grid-row: 1;
+  position: relative;
+  ul {
+    position: absolute;
+    bottom: 1.5rem;
+    left: calc(-5vw - 0.5rem);
+    font-size: ${typography.toJSON().small.fontSize};
+    font-weight: 700;
+  }
+`
+const TrackQuote = styled('blockquote')`
+  white-space: pre-line;
+  margin-bottom: ${rhythm(1.5)};
+  h4 {
+    display: inline;
+    box-decoration-break: clone;
+    line-height: 1.33;
+    padding: 0 4px;
+    background: ${props => props.theme.secondary.color};
+    color: ${props => props.theme.primary.color};
+  }
+`
+const TrackDesc = styled('div')`
+  padding-right: 50%;
+`
+export class TrackDetail extends Component {
+  render() {
+    return (
+      <StyledTrackDetail className="track-detail">
+
+        <div className="track-detail__h">
+          {this.props.heading && (<h1>{this.props.heading}</h1>)}
+          {this.props.subheading && (<H2>{this.props.subheading}</H2>)}
+        </div>
+
+        <NavBottomContainer>
+          <NavBtn>
+            <Link to="/">◀︎</Link>
+          </NavBtn>
+          <NavBtn>
+            <Link to="/">▶︎</Link>
+          </NavBtn>
+        </NavBottomContainer>
+
+        <TrackContent 
+          className={((this.props.quote || this.props.body) && ' has-extra-content ')}
+        >
+
+          <TrackImage>
+            <img 
+              alt={this.props.subheading + ' — ' + this.props.heading + ' artwork'}
+              src={trackArtwork}
+            />
+          </TrackImage>
+
+          <TrackMeta>
+            <ul>
+              <li>
+                <a href="#">Listen ></a>
+              </li>
+              <li>
+                Posted 27/7/2018
+              </li>
+            </ul>
+          </TrackMeta>
+
+          {(this.props.quote || this.props.body) && (
+            <div className="track-detail__extra-content">
+              {this.props.quote && <TrackQuote><h4>{this.props.quote}</h4></TrackQuote>}
+              {this.props.body && <TrackDesc dangerouslySetInnerHTML={{__html: this.props.body}}/>}
+            </div>
+          )}
+
+        </TrackContent>
+
+      </StyledTrackDetail>
+    );
+  }
+}
