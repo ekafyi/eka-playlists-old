@@ -44,9 +44,8 @@ class TransitionContainer extends React.Component {
         {status => (
           <div
             className={this.props.className}
-            style={{
-              ...getTransitionStyle({ status, timeout }),
-            }}
+            //style={{ ...getTransitionStyle({ status, timeout }) }}
+            style={this.props.animate && { ...getTransitionStyle({ status, timeout }) }}
           >
             {this.props.children}
           </div>
