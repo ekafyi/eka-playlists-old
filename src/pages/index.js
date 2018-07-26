@@ -70,8 +70,8 @@ export default class IndexPage extends Component {
     }
   }
   componentDidMount() {
-    this.setState({ posts: this.props.data.allMarkdownRemark.group.reverse() })
-    if(this.props.data.allMarkdownRemark) {
+    this.setState({ posts: this.props.data.tracks.group.reverse() })
+    if(this.props.data.tracks) {
       this.setState({ loadingFinish: true })
     }
   }
@@ -85,7 +85,6 @@ export default class IndexPage extends Component {
           title={siteTitle}
           // meta={[
           //   { name: 'description', content: 'Sample' },
-          //   { name: 'keywords', content: 'sample, something' },
           // ]}
         >
            <html lang="en" />
@@ -105,7 +104,7 @@ export default class IndexPage extends Component {
 
 export const query = graphql`
   query IndexQuery {
-    allMarkdownRemark {
+    tracks: allMarkdownRemark {
       group(field: frontmatter___date) {
         fieldValue
         totalCount

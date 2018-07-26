@@ -13,6 +13,7 @@
     "emotion-theming": "^9.2.3",
     "extract-text-webpack-plugin": "^3.0.2",
     "gatsby": "next",
+    "gatsby-cli": "^1.1.58",
     "gatsby-plugin-emotion": "^1.1.17",
     "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-typography": "^1.7.19",

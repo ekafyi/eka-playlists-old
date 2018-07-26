@@ -15,7 +15,7 @@ import MediaQuery from 'react-responsive';
         |_ HeadText
         |_ BodyText
         |_ Meta
-    |_ MediaAction     = Track external link (all tracks in mobile, track with no embed in tablet up)
+    |_ MediaAction    = Track external link (all tracks in mobile, track with no embed in tablet up)
 */
 
 /** Common variables */
@@ -454,11 +454,12 @@ class TrackDetail extends Component {
               </MediaAction>
             )}
           </MediaQuery>
-          {track.html && 
+          {track.html ?
             <BodyText 
               className={((track.html.length > 420) && ' has-cols ') + ' invert-body-text '}
               dangerouslySetInnerHTML={{__html: track.html}}
-            />
+            /> :
+            <BodyText aria-hidden="true" />
           }
           <Meta>
             <h5 className="sr-only">Related to this track</h5>
